@@ -401,7 +401,7 @@ int Walk::dribble(double dy, double dx, double t1, double t2)
 	
 	legYin    = -legYin;
 	supLegYin = -supLegYin;
-	
+	// asdadfakfjahfkjasfsdfsdfs
 	double sspYin    = legYin + veloYin * dsp1Time;
 	double sspYSupin = supLegYin + veloYin * dsp1Time;
 	double sspYAmp   = veloYin * sqrt(pow(Tc,2) - pow(sspYSupin/veloYin,2));
