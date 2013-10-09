@@ -41,6 +41,7 @@ class Walk
 	Walk(AcYut* bot);
 	int kick();
 	int dribble();
+	int dribble(double dy, double dx,double t1,double t2);
 	int start();
 	float accelerate();
 	float velocity();

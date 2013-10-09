@@ -3,12 +3,20 @@
 #include "walk.h"
 #include "xsens/imu.h"
 #include <signal.h>
+#include <fstream>
+
+using namespace std;
 
 bool quit = false;
 
 void doquit(int para)
 {
 	quit = true;
+};
+
+struct foot
+{
+	double x,y,ang;	
 };
 
 
@@ -161,33 +169,56 @@ void test(AcYut *bot)
 int main()
 {
 	Imu imu;
+	//printf("GENORAI");
 	imu.init();
+	foot foot1[1000];
+	int i=0;
+	ifstream fin;
+	fin.open("Error4.dat",ios::in|ios::binary);
 	
-	(void) signal(SIGINT,doquit);	
+	while(!fin.eof())
+	{
+		fin.read((char*)&foot1[i],sizeof(foot1[i]));
+		//printf("%lf,%lf,%lf\n",foot1[i].y,foot1[i].x,foot1[i].ang);
+		i++;
+	}
+	
+	//(void) signal(SIGINT,doquit);	
 	Communication comm;
 	AcYut bot(&comm,&imu);
-	//Walk walk(&bot);
-	int i=0;
+	Walk walk(&bot);
+	//int i=0;
 
 	
 	//test(&bot);
+	walk.dribble();
 	//walk.dribble();
-	//walk.dribble();
-	//walk.dribble();
-	/*while(!quit)
+/*	while(walk.velocity()*1.72 <=90)
+	{
+			walk.dribble();
+			walk.accelerate();
+	}*/
+	/*while(1)
+	walk.dribble();*/
+	int j=0;
+	while(j<i)
 	{
 	//	bot.leg[0]->runIK(390,0,0,0);
 	//	bot.leg[1]->runIK(390,0,0,0);
 	//	bot.updateBot();
-		
-		walk.dribble();
-		i++;
-		if(walk.velocity()*1.72 <=155)
-			walk.accelerate();
-	}*/
+		printf("\n\n\nSTEP %d\n\n",j);
+		walk.dribble(foot1[j].y,foot1[j].x,foot1[j].ang,0);
+	/*	if(j%2==0)
+		walk.dribble(20,20,0,0);
+		else
+		walk.dribble(20,0,0,0);*/
+		j++;
+	//	if(walk.velocity()*1.72 <=155)
+	//		walk.accelerate();
+	}
 	//walk.turnright(35.0);
-	while(1)
-		balanceStatic(bot,1,DSP);
+	//while(1)
+	//	balanceStatic(bot,1,DSP);*/
 	return 0;
 	
 	

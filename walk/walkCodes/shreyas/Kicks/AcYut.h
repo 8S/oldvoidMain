@@ -48,6 +48,7 @@ public:
 	const double (&(getRotCOM()))[AXES];
 	const supportPolygon calcSupportPolygon();
 	int clearPoS();
+	int storeCOM2(int n);
 	int printCOM();
 	int printRotCOM();
 	int writeSensedCurrent(FILE *&fp);

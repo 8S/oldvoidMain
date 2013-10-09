@@ -1,4 +1,9 @@
 #include "AcYut.h"
+#include<iostream>
+#include<fstream>
+#include<iomanip>
+using namespace std;
+
 
 
 
@@ -34,20 +39,20 @@ AcYut::AcYut(Communication* comm, Imu* imu)
 	polyPoints=0;
 	this->comm = comm;
 	this->imu = imu;
-	offsets[0] = 0;
+	offsets[0] = 40;
 	offsets[1] = 0;
 	offsets[2] = 32;
 	offsets[3] = -32;
 	offsets[4] = 0;
-	offsets[5] = -15;
+	offsets[5] = -40;
 	offsets[6] = 280;
 
-	offsets[20] = -0;
+	offsets[20] = 20;
 	offsets[21] = 0;
 	offsets[22] = 32;
 	offsets[23] = -32;
 	offsets[24] = 0;
-	offsets[25] = 0;
+	offsets[25] = -20;
 	offsets[26] = -256;
 	
 	
@@ -312,4 +317,28 @@ double* AcYut::getWorldFrameCoods(double coods[], double ans[])
 	#endif
 	
 	return ans;
+}
+
+int AcYut::storeCOM2(int n)
+{
+	float i,j,k;
+	// getRotCOM();
+	ofstream filout;
+	filout.open("X1.dat",ios::out|ios::app);
+	filout<<n;
+	filout<<"\t"<<rotCOM[0]<<endl;
+	//cout<<rotCOM[0]<<"   ";
+	filout.close();
+	filout.open("Y1.dat",ios::out|ios::app);
+	filout<<n;
+	filout<<"\t"<<rotCOM[1]<<endl;
+	//cout<<rotCOM[1]<<"   ";
+	filout.close();
+	filout.open("Z1.dat",ios::out|ios::app);
+	filout<<n;
+	filout<<"\t"<<rotCOM[2]<<endl;
+	//cout<<rotCOM[2]<<"   ";
+	filout.close();
+	cout<<endl; 
+	return(0);
 }

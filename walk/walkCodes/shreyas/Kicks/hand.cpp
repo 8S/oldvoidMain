@@ -53,17 +53,17 @@ void Hand::init()
 	double pos[HAND_MOTORS_COUNT];
 	if(hand==LEFT)
 	{
-		pos[0]=2260;
-		pos[1]=2048;
+		pos[0]=2048;
+		pos[1]=4096-1100;
 		pos[2]=1792;
-		pos[3]=2048;
+		pos[3]=4096-3200;
 	}
 	else
 	{
-		pos[0]=4096-2260;
-		pos[1]=2048;
+		pos[0]=4096-2048;
+		pos[1]=1100;
 		pos[2]=4096-1792;
-		pos[3]=2048;
+		pos[3]=3200;
 	}
 	
 
