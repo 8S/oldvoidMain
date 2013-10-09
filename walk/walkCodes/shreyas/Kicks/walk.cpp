@@ -1,3 +1,4 @@
+//dummy stupid thingy
 #include "walk.h"
 int k=1;
 
