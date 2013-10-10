@@ -193,11 +193,11 @@ int main()
 	//test(&bot);
 	walk.dribble();
 	//walk.dribble();
-/*	while(walk.velocity()*1.72 <=90)
+	while(walk.velocity()*1.72 <=90)
 	{
 			walk.dribble();
 			walk.accelerate();
-	}*/
+	}
 	/*while(1)
 	walk.dribble();*/
 	int j=0;
@@ -207,7 +207,9 @@ int main()
 	//	bot.leg[1]->runIK(390,0,0,0);
 	//	bot.updateBot();
 		printf("\n\n\nSTEP %d\n\n",j);
-		walk.dribble(foot1[j].y,foot1[j].x,foot1[j].ang,0);
+		walk.dribble();
+	//	walk.dribble_new(foot1[j].y,foot1[j].x,foot1[j].ang,0);
+	//	walk.dribble_new(3,0,0,0);
 	/*	if(j%2==0)
 		walk.dribble(20,20,0,0);
 		else
