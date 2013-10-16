@@ -409,8 +409,8 @@ int Walk::dribble2()
 	
 	double P_freeLegYin = supLegYfi + veloYfi_d*D_dsp1Time;
 	
-	double c2=P_freeLegYin;
-	double b2=veloYfi_d;
+	double c2=-P_freeLegYin;
+	double b2=-veloYfi_d;
 	double a2=(veloYfi-veloYfi_d)/(2*P_sspZTime);
 	
 	double P_freeLegYfi = a2*pow(P_sspZTime,2)+b2*sspZTime+c2;
@@ -522,7 +522,7 @@ int Walk::dribble2()
 		///////printf("X\t%3.1lf\tXR\t%3.1lf\tY\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lfP\t%lf\tPR\t%lf\n",x,xr,y,yr,z,zr,phi,phiR);
 		////printf("Y\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lf\tP\t%lf\tPR\t%lf\n",y,yr,z+s,zr+sr,phi,phiR);
 		///////printf("Z\t%lf\tZR\t%lf\n",z,zr);
-		printf("Walk phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
+		printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
 		
 		bot->leg[leg]->runIK(x,y,z+feetSeperation,phi);
 		bot->leg[1-leg]->runIK(xr,yr,zr+feetSeperation,phiR);

@@ -166,7 +166,7 @@ int main()
 	(void) signal(SIGINT,doquit);	
 	Communication comm;
 	AcYut bot(&comm,&imu);
-	//Walk walk(&bot);
+	Walk walk(&bot);
 	int i=0;
 
 	
@@ -186,8 +186,8 @@ int main()
 			walk.accelerate();
 	}*/
 	//walk.turnright(35.0);
-	while(1)
-		balanceStatic(bot,1,DSP);
+	while(!quit)
+		walk.dribble();
 	return 0;
 	
 	
