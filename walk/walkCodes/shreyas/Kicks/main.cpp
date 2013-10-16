@@ -166,28 +166,17 @@ int main()
 	(void) signal(SIGINT,doquit);	
 	Communication comm;
 	AcYut bot(&comm,&imu);
-	//Walk walk(&bot);
-	int i=0;
-
+	Walk walk(&bot);
 	
-	//test(&bot);
-	//walk.dribble();
-	//walk.dribble();
-	//walk.dribble();
-	/*while(!quit)
-	{
-	//	bot.leg[0]->runIK(390,0,0,0);
-	//	bot.leg[1]->runIK(390,0,0,0);
-	//	bot.updateBot();
-		
-		walk.dribble();
-		i++;
-		if(walk.velocity()*1.72 <=155)
+	while(walk.velocity()*1.5 <=200)
+		{
 			walk.accelerate();
-	}*/
-	//walk.turnright(35.0);
-	while(1)
-		balanceStatic(bot,1,DSP);
+			walk.dribble();
+		}
+	while(!quit)
+	{
+		walk.dribble();
+	}
 	return 0;
 	
 	

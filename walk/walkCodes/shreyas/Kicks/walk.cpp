@@ -12,7 +12,7 @@ Walk::Walk(AcYut* bot)
 	supLegZin=25.155276;
 	veloZin=-170;
 	veloZfi=170;
-	zMax=70;
+	zMax=65;
 	lift=40;
 	legRotin=0;
 	legRotfi=0;
@@ -44,14 +44,14 @@ int Walk::start()
 
 float Walk::accelerate()
 {
-	veloYfi=veloYfi*1.72;
+	veloYfi=veloYfi*1.5;
 	legRotfi = 0;
 	supLegRotfi =0;
 }
 
 float Walk::decelerate()
 {
-	veloYfi=veloYfi*0.35;
+	veloYfi=veloYfi*0.5;
 	legRotfi=0;
 	supLegRotfi=0;
 }
@@ -105,10 +105,10 @@ int Walk::dribble()
 	printf("%d\t",leg);
 	
 	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
-	int fps = 60;
+	int fps = 200;
 	int sleep = 1000000.0/(double)fps;
 	double timeInc =1.0/(double)fps;
-	double feetSeperation = 0;
+	double feetSeperation = 5;
 	double hipLength = 130;
 	
 	double Tc = sqrt(600.00/9810.0);
@@ -117,8 +117,8 @@ int Walk::dribble()
 	
 	///// desired Values 
 	
-	double D_dsp1Time = 0.05;
-	double D_dsp2Time = 0.05;
+	double D_dsp1Time = 0.03;
+	double D_dsp2Time = 0.03;
 	
 	// ////printf("Tc\t\t%lf\n",Tc);
 	// ////printf("legZin\t\t%lf\n",legZin);
@@ -292,7 +292,7 @@ int Walk::dribble()
 		///////printf("X\t%3.1lf\tXR\t%3.1lf\tY\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lfP\t%lf\tPR\t%lf\n",x,xr,y,yr,z,zr,phi,phiR);
 		////printf("Y\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lf\tP\t%lf\tPR\t%lf\n",y,yr,z+s,zr+sr,phi,phiR);
 		///////printf("Z\t%lf\tZR\t%lf\n",z,zr);
-		printf("Walk phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
+		printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
 		
 		bot->leg[leg]->runIK(x,y,z+feetSeperation,phi);
 		bot->leg[1-leg]->runIK(xr,yr,zr+feetSeperation,phiR);
@@ -314,7 +314,9 @@ int Walk::dribble()
 	veloZin = -veloZfi;
 	veloZfi= veloZfi;	
 	supLegRotin  = legRotfi;
+	legRotfi=0;
 	legRotin = supLegRotfi;
+	supLegRotfi=0;
 	return EXIT_SUCCESS;//endState;
 }
 
