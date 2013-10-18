@@ -302,8 +302,8 @@ int Walk::dribble()
 		corr=1*(COM[1]-13);
 		bot->storeCOM2(k);
 		k=k+1;	
-		bot->leg[leg]->runIK(x,y-corr,z+feetSeperation,phi);
-		bot->leg[1-leg]->runIK(xr,yr-corr,zr+feetSeperation,phiR);
+		bot->leg[leg]->runIK(x,y,z+feetSeperation,phi);
+		bot->leg[1-leg]->runIK(xr,yr,zr+feetSeperation,phiR);
 		//printf("%d %d\n\n\n",leg,1-leg);
 		bot->updateBot();
 		//printf("Sent Values\n");

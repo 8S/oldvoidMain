@@ -29,7 +29,7 @@ float scurve2(float in,float fi,float t, float tot)
 	float ret_frac=6*pow(frac,5)-15*pow(frac,4)+10*pow(frac,3);
 	return in+(fi-in)*ret_frac;
 }
-
+/*
 int balanceStatic(AcYut& bot, int phase, int leg = DSP)
 {
 	sleep(1);
@@ -157,7 +157,7 @@ void test(AcYut *bot)
 	
 
 }
-
+*/
 int main()
 {
 	Imu imu;
