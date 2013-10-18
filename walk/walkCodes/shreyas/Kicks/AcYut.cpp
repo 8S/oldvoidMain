@@ -1,4 +1,8 @@
 #include "AcYut.h"
+#include<iostream>
+#include<fstream>
+#include<iomanip>
+using namespace std;
 
 
 
@@ -313,3 +317,28 @@ double* AcYut::getWorldFrameCoods(double coods[], double ans[])
 	
 	return ans;
 }
+
+int AcYut::storeCOM2(int n)
+{
+	float i,j,k;
+	// getRotCOM();
+	ofstream filout;
+	filout.open("X1.dat",ios::out|ios::app);
+	filout<<n;
+	filout<<"\t"<<rotCOM[0]<<endl;
+	//cout<<rotCOM[0]<<"   ";
+	filout.close();
+	filout.open("Y1.dat",ios::out|ios::app);
+	filout<<n;
+	filout<<"\t"<<rotCOM[1]<<endl;
+	//cout<<rotCOM[1]<<"   ";
+	filout.close();
+	filout.open("Z1.dat",ios::out|ios::app);
+	filout<<n;
+	filout<<"\t"<<rotCOM[2]<<endl;
+	//cout<<rotCOM[2]<<"   ";
+	filout.close();
+	cout<<endl; 
+	return(0);
+}
+

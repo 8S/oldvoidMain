@@ -1,5 +1,5 @@
 #include "walk.h"
-
+int k=1;
 
 Walk::Walk(AcYut* bot)
 {
@@ -101,6 +101,9 @@ float Walk::turnleft(float theta)
 
 int Walk::dribble()
 {
+	double av=13;
+	double corr;
+	
 	leg=(LEG)(1-(int)leg);	
 	printf("%d\t",leg);
 	
@@ -294,8 +297,13 @@ int Walk::dribble()
 		///////printf("Z\t%lf\tZR\t%lf\n",z,zr);
 		printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
 		
-		bot->leg[leg]->runIK(x,y,z+feetSeperation,phi);
-		bot->leg[1-leg]->runIK(xr,yr,zr+feetSeperation,phiR);
+		const double (&COM)[AXES] = bot->getRotCOM();
+		//bot->printRotCOM(); 
+		corr=1*(COM[1]-13);
+		bot->storeCOM2(k);
+		k=k+1;	
+		bot->leg[leg]->runIK(x,y-corr,z+feetSeperation,phi);
+		bot->leg[1-leg]->runIK(xr,yr-corr,zr+feetSeperation,phiR);
 		//printf("%d %d\n\n\n",leg,1-leg);
 		bot->updateBot();
 		//printf("Sent Values\n");

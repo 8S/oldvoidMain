@@ -51,6 +51,8 @@ public:
 	int printCOM();
 	int printRotCOM();
 	int writeSensedCurrent(FILE *&fp);
+	int storeCOM2(int n);
+
 };
 
 

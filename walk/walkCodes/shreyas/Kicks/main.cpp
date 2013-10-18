@@ -163,7 +163,7 @@ int main()
 	Imu imu;
 	imu.init();
 	
-	(void) signal(SIGINT,doquit);	
+//	(void) signal(SIGINT,doquit);	
 	Communication comm;
 	AcYut bot(&comm,&imu);
 	Walk walk(&bot);
@@ -173,7 +173,7 @@ int main()
 			walk.accelerate();
 			walk.dribble();
 		}
-	while(!quit)
+	while(1)
 	{
 		walk.dribble();
 	}
