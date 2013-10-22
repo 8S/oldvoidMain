@@ -30,6 +30,9 @@ void AcYut::initialize()
 	right_hand->setSpeed(0);
 	comm->syncFlush();
 	
+	left_leg->getLoad();
+	right_leg->getLoad();
+	
 	printf("Initialized Bot\n");
 }
 
@@ -339,6 +342,15 @@ int AcYut::storeCOM2(int n)
 	//cout<<rotCOM[2]<<"   ";
 	filout.close();
 	cout<<endl; 
+	return(0);
+}
+
+int AcYut::storevalues(int n)
+{
+	std::cout<<n<<endl;
+	left_leg->getLoad();
+	right_leg->getLoad();
+	
 	return(0);
 }
 

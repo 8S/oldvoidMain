@@ -168,7 +168,7 @@ int main()
 	AcYut bot(&comm,&imu);
 	Walk walk(&bot);
 	
-	while(walk.velocity()*1.5 <=200)
+	while(walk.velocity()*1.5 <=90)
 		{
 			walk.accelerate();
 			walk.dribble();

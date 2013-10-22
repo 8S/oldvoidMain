@@ -739,7 +739,7 @@ int Motor::getPresentLoad()
 	byte data[2];
 	motorRead(0x28, 0x02, data, motorID);
 	int load = data[0] + ((data[1]&3)<<8);
-	//cout<<"Load:"<<motorID<<" "<<load<<"\n";
+	std::cout<<"Load:"<<motorID<<" "<<load<<"\n";
 	return load;
 }
 

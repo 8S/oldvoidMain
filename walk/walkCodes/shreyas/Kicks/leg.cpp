@@ -79,9 +79,10 @@ int Leg::setMotorSpeed(int id, int speed)
 
 int Leg::getLoad()
 {
+	m[0]->getPresentLoad();
 	for (int i = 0; i < LEG_MOTOR_COUNT; ++i)
 	{
-		m[i]->getPresentLoad();
+	//	m[i]->getPresentLoad();
 	}
 }
 

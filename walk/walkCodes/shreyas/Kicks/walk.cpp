@@ -107,7 +107,7 @@ int Walk::dribble()
 	leg=(LEG)(1-(int)leg);	
 	printf("%d\t",leg);
 	
-	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
+//	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
 	int fps = 200;
 	int sleep = 1000000.0/(double)fps;
 	double timeInc =1.0/(double)fps;
@@ -295,13 +295,15 @@ int Walk::dribble()
 		///////printf("X\t%3.1lf\tXR\t%3.1lf\tY\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lfP\t%lf\tPR\t%lf\n",x,xr,y,yr,z,zr,phi,phiR);
 		////printf("Y\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lf\tP\t%lf\tPR\t%lf\n",y,yr,z+s,zr+sr,phi,phiR);
 		///////printf("Z\t%lf\tZR\t%lf\n",z,zr);
-		printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
+	//	printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
 		
 		const double (&COM)[AXES] = bot->getRotCOM();
 		//bot->printRotCOM(); 
 		corr=1*(COM[1]-13);
-		bot->storeCOM2(k);
-		k=k+1;	
+		bot->storevalues(k);
+		k=k+1;
+		printf("%d\t",leg);
+			
 		bot->leg[leg]->runIK(x,y,z+feetSeperation,phi);
 		bot->leg[1-leg]->runIK(xr,yr,zr+feetSeperation,phiR);
 		//printf("%d %d\n\n\n",leg,1-leg);
