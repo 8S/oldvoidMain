@@ -36,6 +36,31 @@ void AcYut::initialize()
 	printf("Initialized Bot\n");
 }
 
+int AcYut::reachSlow(double left_x,double left_y,double left_z,double right_x,double right_y,double right_z)
+{
+	left_leg->setSpeed(50);
+	right_leg->setSpeed(50);
+	left_hand->setSpeed(50);
+	right_hand->setSpeed(50);
+	comm->syncFlush();
+	
+	left_leg->runIK(left_x,left_y,left_z,0);
+	left_leg->setGoalPositionSync();
+	right_leg->runIK(right_x,right_y,right_z,0);
+	right_leg->setGoalPositionSync();
+	left_hand->init();
+	right_hand->init();
+	comm->syncFlush();
+	
+	sleep(3);
+	
+	left_leg->setSpeed(0);
+	right_leg->setSpeed(0);
+	left_hand->setSpeed(0);
+	right_hand->setSpeed(0);
+	comm->syncFlush();
+}
+
 AcYut::AcYut(Communication* comm, Imu* imu)
 {
 	polyPoints=0;

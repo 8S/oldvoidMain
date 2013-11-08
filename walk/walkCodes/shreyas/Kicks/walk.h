@@ -43,6 +43,7 @@ class Walk
 	int dribble();
 	int backdribble();
 	int start();
+	int start2();
 	float accelerate();
 	float velocity();
 	float decelerate();

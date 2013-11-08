@@ -53,6 +53,7 @@ public:
 	int writeSensedCurrent(FILE *&fp);
 	int storeCOM2(int n);
 	int storevalues(int n);
+	int reachSlow(double left_x,double left_y,double left_z,double right_x,double right_y,double right_z);
 
 };
 
