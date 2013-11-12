@@ -30,8 +30,8 @@ void AcYut::initialize()
 	right_hand->setSpeed(0);
 	comm->syncFlush();
 	
-	left_leg->getLoad();
-	right_leg->getLoad();
+	//left_leg->getLoad();
+	//right_leg->getLoad();
 	
 	printf("Initialized Bot\n");
 }
@@ -66,20 +66,20 @@ AcYut::AcYut(Communication* comm, Imu* imu)
 	polyPoints=0;
 	this->comm = comm;
 	this->imu = imu;
-	offsets[0] = 0;
+	offsets[0] = -100;
 	offsets[1] = 0;
 	offsets[2] = 32;
 	offsets[3] = -32;
 	offsets[4] = 0;
-	offsets[5] = -15;
+	offsets[5] = 0;
 	offsets[6] = 280;
 
-	offsets[20] = -0;
+	offsets[20] = 20;
 	offsets[21] = 0;
 	offsets[22] = 32;
 	offsets[23] = -32;
 	offsets[24] = 0;
-	offsets[25] = 0;
+	offsets[25] = -20;
 	offsets[26] = -256;
 	
 	

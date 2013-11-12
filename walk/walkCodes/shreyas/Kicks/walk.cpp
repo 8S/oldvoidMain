@@ -20,6 +20,7 @@ Walk::Walk(AcYut* bot)
 	supLegRotfi=0;
 	
 	start2();
+	sleep(1);
 };
 
 int Walk::kick()
@@ -44,6 +45,7 @@ int Walk::start()
 
 int Walk::start2()
 {
+//	leg=(LEG)(1-(int)leg);
 	printf("%d\t",leg);
 	
 //	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
@@ -186,6 +188,7 @@ int Walk::start2()
 	double zr_half_time=sspZAmp * cosh((sspTime/2.0)/Tc + sspZPhs) -hipLength/2;
 	
 	printf("Z %lf ZR %lf Y %lf YR %lf\n",z_half_time,zr_half_time,y_half_time,yr_half_time);
+	//bot->reachSlow(390,y_half_time,z_half_time,390,yr_half_time,zr_half_time);
 	bot->reachSlow(390,y_half_time,z_half_time,390,yr_half_time,zr_half_time);
 	int state = DSP;
 //	////printf("*************************************** STEP **********************************************\n");	
