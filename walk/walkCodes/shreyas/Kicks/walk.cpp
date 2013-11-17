@@ -20,7 +20,7 @@ Walk::Walk(AcYut* bot)
 	supLegRotfi=0;
 	
 	start2();
-	sleep(1);
+	
 };
 
 int Walk::kick()
@@ -319,6 +319,7 @@ float Walk::turnleft(float theta)
 
 int Walk::dribble()
 {
+	double COM[3];
 	double av=13;
 	double corr;
 	
@@ -326,7 +327,7 @@ int Walk::dribble()
 	printf("%d\t",leg);
 	
 //	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
-	int fps = 200;
+	int fps = 60;
 	int sleep = 1000000.0/(double)fps;
 	double timeInc =1.0/(double)fps;
 	double feetSeperation = 5;
@@ -513,10 +514,23 @@ int Walk::dribble()
 		///////printf("X\t%3.1lf\tXR\t%3.1lf\tY\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lfP\t%lf\tPR\t%lf\n",x,xr,y,yr,z,zr,phi,phiR);
 		////printf("Y\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lf\tP\t%lf\tPR\t%lf\n",y,yr,z+s,zr+sr,phi,phiR);
 		///////printf("Z\t%lf\tZR\t%lf\n",z,zr);
-		printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
+		//printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
+		
+		
+		double Zprev=COM[2];
 		
 		const double (&COM)[AXES] = bot->getRotCOM(); 
 		
+		printf("X:%lf\tY:%lf\tZ:%lf\n",COM[0],COM[1],COM[2]);
+		
+		double Zcurr=COM[2];
+		
+		double ZV=(Zcurr-Zprev)*fps;
+		
+		double Energy=(1/2)*(pow(ZV,2)-pow(1/Tc,2)*pow(Zcurr,2));
+		
+		
+		//printf("W VZ\t%lf\tE\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
 		corr=COM[1]-13;
 		
 			
