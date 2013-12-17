@@ -22,7 +22,12 @@ void AcYut::initialize()
 	right_hand->init();
 	comm->syncFlush();
 	
-	sleep(3);
+	int arr_l[]={4096-2048,4096-1100,0,4096-3000};
+	int arr_r[]={2048,1100,0,3000};
+	left_hand->setGoalPositionSync(arr_l);
+	right_hand->setGoalPositionSync(arr_r);
+	comm->syncFlush();
+	sleep(4);
 	
 	left_leg->setSpeed(0);
 	right_leg->setSpeed(0);

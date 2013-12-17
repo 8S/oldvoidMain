@@ -23,6 +23,7 @@ public:
 	int* pingHand();
 	int getMotorLoad(int motorID);
 	void init();
+	void setGoalPositionSync(int* pos);
 };
 
 #endif

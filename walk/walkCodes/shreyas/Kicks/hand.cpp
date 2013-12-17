@@ -56,18 +56,31 @@ void Hand::init()
 		pos[0]=2048;
 		pos[1]=3071;
 		pos[2]=1792;
-		pos[3]=4096-2048;
+		pos[3]=4096-3000;
 	}
 	else
 	{
 		pos[0]=2048;
 		pos[1]=4096-3071;
 		pos[2]=4096-1792;
-		pos[3]=2048;
+		pos[3]=3000;
 	}
 	
 	
 
+	for (int i = 0; i < HAND_MOTORS_COUNT; ++i)
+	{
+		m[i]->setGoalPositionSync(pos[i]);
+	}
+}
+
+void Hand::setGoalPositionSync(int* pos)
+{
+
+	// pos[0]=2048;
+	// 	pos[1]=4096-3071;
+	// 	pos[2]=4096-1792;
+	// 	pos[3]=2048;
 	for (int i = 0; i < HAND_MOTORS_COUNT; ++i)
 	{
 		m[i]->setGoalPositionSync(pos[i]);

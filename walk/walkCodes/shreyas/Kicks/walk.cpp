@@ -326,6 +326,9 @@ int Walk::dribble()
 	
 	leg=(LEG)(1-(int)leg);	
 //	printf("%d\t",leg);
+
+	if(leg==1)
+		legRotfi-=5;
 	
 //	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
 	int fps = 200;
@@ -340,8 +343,8 @@ int Walk::dribble()
 	
 	///// desired Values 
 	
-	double D_dsp1Time = 0.03;
-	double D_dsp2Time = 0.03;
+	double D_dsp1Time = 0.05;
+	double D_dsp2Time = 0.05;
 	
 	// ////printf("Tc\t\t%lf\n",Tc);
 	// ////printf("legZin\t\t%lf\n",legZin);
@@ -531,7 +534,7 @@ int Walk::dribble()
 		Energy=(1/2.0)*(pow(ZV,2)-(pow(1/Tc,2)*pow(Zcurr,2)));
 		
 		//printf("%lf %lf %lf %lf %lf\n",Zcurr,Zprev,pow(ZV,2),(pow(1.0/Tc,2)*pow(Zcurr,2)),(pow(ZV,2)-(pow(1/Tc,2)*pow(Zcurr,2))));
-		printf("W VZ\t%lf\tE\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",ZV,Energy,z,zr,y,yr);
+		//printf("W VZ\t%lf\tE\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",ZV,Energy,z,zr,y,yr);
 		corr=COM[1]-13;
 		
 			
