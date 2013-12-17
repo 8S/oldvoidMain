@@ -66,7 +66,7 @@ AcYut::AcYut(Communication* comm, Imu* imu)
 	polyPoints=0;
 	this->comm = comm;
 	this->imu = imu;
-	offsets[0] = -100;
+	offsets[0] = -120;
 	offsets[1] = 0;
 	offsets[2] = 32;
 	offsets[3] = -32;

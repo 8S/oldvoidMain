@@ -12,7 +12,7 @@ Walk::Walk(AcYut* bot)
 	supLegZin=25.155276;
 	veloZin=-170;
 	veloZfi=170;
-	zMax=65;
+	zMax=70;
 	lift=30;
 	legRotin=0;
 	legRotfi=0;
@@ -46,7 +46,7 @@ int Walk::start()
 int Walk::start2()
 {
 //	leg=(LEG)(1-(int)leg);
-	printf("%d\t",leg);
+//	printf("%d\t",leg);
 	
 //	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
 	int fps = 200;
@@ -132,7 +132,7 @@ int Walk::start2()
 	double legYfi    = sspYfi + veloYfi_d*dsp2Time;
 	double supLegYfi = sspYSupfi + veloYfi_d*dsp2Time;
 	
-	printf("\n\n\n");
+/*	printf("\n\n\n");
 	printf("legYin\t\t%lf\n",legYin);
 	printf("supLegYin\t%lf\n",supLegYin);
 	printf("sspYin\t\t%lf\n",sspYin);
@@ -150,7 +150,7 @@ int Walk::start2()
 	printf("P_sspZTime\t%lf\n",P_sspZTime);
 	printf("P_sspYin\t\t%lf\n",P_sspYin);
 	printf("P_legYin\t\t%lf\n",P_legYin);
-	// Y (cubic)
+*/	// Y (cubic)
 	
 	double a = ((-veloYfi-veloYin)-2*(-sspYfi+sspYin)/sspTime)/pow(sspTime,2);
 	double b = ((-sspYfi+sspYin)/sspTime+veloYin-a*pow(sspTime,2))/sspTime;
@@ -187,9 +187,9 @@ int Walk::start2()
 	double z_half_time=scurve(sspZin,sspZfi,sspTime/2.0,sspTime) - hipLength/2;
 	double zr_half_time=sspZAmp * cosh((sspTime/2.0)/Tc + sspZPhs) -hipLength/2;
 	
-	printf("Z %lf ZR %lf Y %lf YR %lf\n",z_half_time,zr_half_time,y_half_time,yr_half_time);
+	//printf("Z %lf ZR %lf Y %lf YR %lf\n",z_half_time,zr_half_time,y_half_time,yr_half_time);
 	//bot->reachSlow(390,y_half_time,z_half_time,390,yr_half_time,zr_half_time);
-	bot->reachSlow(390,y_half_time,z_half_time,390,yr_half_time,zr_half_time);
+	bot->reachSlow(390,y_half_time,z_half_time+feetSeperation,390,yr_half_time,zr_half_time+feetSeperation);
 	int state = DSP;
 //	////printf("*************************************** STEP **********************************************\n");	
 	for(walkTime = dsp1Time+sspTime/2.0; walkTime<=stepTime; walkTime +=timeInc)
@@ -230,7 +230,7 @@ int Walk::start2()
 		///////printf("X\t%3.1lf\tXR\t%3.1lf\tY\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lfP\t%lf\tPR\t%lf\n",x,xr,y,yr,z,zr,phi,phiR);
 		////printf("Y\t%lf\tYR\t%lf\tZ\t%lf\tZR\t%lf\tP\t%lf\tPR\t%lf\n",y,yr,z+s,zr+sr,phi,phiR);
 		///////printf("Z\t%lf\tZR\t%lf\n",z,zr);
-		printf("S phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
+		//printf("S phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
 		
 		bot->leg[leg]->runIK(x,y,z+feetSeperation,phi);
 		bot->leg[1-leg]->runIK(xr,yr,zr+feetSeperation,phiR);
@@ -320,17 +320,18 @@ float Walk::turnleft(float theta)
 int Walk::dribble()
 {
 	double COM[3];
+	double Zcurr,Zprev,Energy,ZV;
 	double av=13;
 	double corr;
 	
 	leg=(LEG)(1-(int)leg);	
-	printf("%d\t",leg);
+//	printf("%d\t",leg);
 	
 //	printf("VYin\t%lf\tVyfi\t%lf\n",veloYin,veloYfi);
-	int fps = 60;
+	int fps = 200;
 	int sleep = 1000000.0/(double)fps;
 	double timeInc =1.0/(double)fps;
-	double feetSeperation = 5;
+	double feetSeperation = 10;
 	double hipLength = 130;
 	
 	double Tc = sqrt(600.00/9810.0);
@@ -410,7 +411,7 @@ int Walk::dribble()
 	double legYfi    = sspYfi + veloYfi_d*dsp2Time;
 	double supLegYfi = sspYSupfi + veloYfi_d*dsp2Time;
 	
-	printf("\n\n\n");
+/*	printf("\n\n\n");
 	printf("legYin\t\t%lf\n",legYin);
 	printf("supLegYin\t%lf\n",supLegYin);
 	printf("sspYin\t\t%lf\n",sspYin);
@@ -428,7 +429,7 @@ int Walk::dribble()
 	printf("P_sspZTime\t%lf\n",P_sspZTime);
 	printf("P_sspYin\t\t%lf\n",P_sspYin);
 	printf("P_legYin\t\t%lf\n",P_legYin);
-	// Y (cubic)
+*/	// Y (cubic)
 	
 	double a = ((-veloYfi-veloYin)-2*(-sspYfi+sspYin)/sspTime)/pow(sspTime,2);
 	double b = ((-sspYfi+sspYin)/sspTime+veloYin-a*pow(sspTime,2))/sspTime;
@@ -517,20 +518,20 @@ int Walk::dribble()
 		//printf("W phi\t%lf\tphiR\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
 		
 		
-		double Zprev=COM[2];
+		Zprev=Zcurr;
 		
-		const double (&COM)[AXES] = bot->getRotCOM(); 
+		//const double (&COM)[AXES] = bot->getRotCOM(); 
 		
-		printf("X:%lf\tY:%lf\tZ:%lf\n",COM[0],COM[1],COM[2]);
+		//printf("X:%lf\tY:%lf\tZ:%lf\n",COM[0],COM[1],COM[2]);
 		
-		double Zcurr=COM[2];
+		Zcurr=COM[2];
 		
-		double ZV=(Zcurr-Zprev)*fps;
+		ZV=(Zcurr-Zprev)*fps;
 		
-		double Energy=(1/2)*(pow(ZV,2)-pow(1/Tc,2)*pow(Zcurr,2));
+		Energy=(1/2.0)*(pow(ZV,2)-(pow(1/Tc,2)*pow(Zcurr,2)));
 		
-		
-		//printf("W VZ\t%lf\tE\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",phi,phiR,z,zr,y,yr);
+		//printf("%lf %lf %lf %lf %lf\n",Zcurr,Zprev,pow(ZV,2),(pow(1.0/Tc,2)*pow(Zcurr,2)),(pow(ZV,2)-(pow(1/Tc,2)*pow(Zcurr,2))));
+		printf("W VZ\t%lf\tE\t%lf\tZ\t%lf\tZR\t%lf\tY\t%lf\tYR\t%lf\n",ZV,Energy,z,zr,y,yr);
 		corr=COM[1]-13;
 		
 			
